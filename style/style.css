@@ -1,0 +1,838 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif; /* Generic fonts are chosen as the main font families of the website */
+}
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: #fffff1; /* Define the main content background colour of the website */
+}
+
+/* CSS for Website Header */
+header {
+    position: fixed;
+    top: 0; right: 0; left: 0; 
+    display: flex; 
+    align-items: center;
+    padding: 0 11%;
+    background-color: #cfdfd7; /* Light green as the second colour of the website mainly used for navigational menu */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+/* CSS for Website Logo and Icons */
+header a#logo {
+    margin-right: 6.6%;
+}
+header a#logo img { 
+    width: 120px;
+}
+header a.icon { /* Styles applied on user account and search icons */
+    position: relative; 
+    top: 5px; left: 40%; 
+    display: inline-block;
+    padding: 25px 15px;
+}
+header a.icon img { 
+    width: 20px;
+}
+
+/* CSS for Website Dropdown Navigation Menu */
+nav {
+    display: flex;
+}
+a.navbarBtn {
+	font-size: 16px;
+    padding: 30px 15px;
+    position: relative;
+    display: inline-block;
+    color: black;
+    text-decoration: none;
+}
+a.navbarBtn:after { /* Simple hover animation for main links under navigation menu */
+    content: "";
+    position: absolute;
+    background-color: black;
+    height: 0.5px; width: 0;
+    left: 16px; bottom: 20px;
+    transition: 0.3s;
+}
+a.navbarBtn:hover:after {
+    width: 20px;
+}
+.navRow {
+    position: absolute;
+	left: 0;
+	width: 100%;
+	display: none; /* Dropdown content displayed during main links mouseover */
+    background-color: #cfdfd7;
+	z-index: 10;
+}
+.navbar:focus-within .navRow,
+.navbar:hover .navRow {
+	display: block;
+    border-top: 1px solid #9f9f9f;
+}
+.navCol { /* Vertical arrangements for dropdown menu content */
+	float: left;
+	padding: 0;
+	height: 450px;
+}
+.navCol a, .main2 a {
+    font-weight: bolder;
+}
+.navCol a:hover, .main2 a:hover {
+    opacity: 0.6;
+}
+.column1 {
+    width: 25%;
+    padding: 3% 11% ;
+}
+.column2 {
+    width: 38%;
+    padding: 2.5% 0;
+}
+.column2 ul li {
+    list-style-type: none;
+    padding: 8px 0;
+    font-size: 16px;
+    opacity: 0;
+}
+.column3 {
+    width: 37%;
+    overflow-x: hidden;
+}
+/* Images displayed under each dropdown menu */
+.colImg1 {
+    background: url(../photos/homepage/identify.jpg) no-repeat;
+    /* image obtained from https://www.freepik.com/free-photo/agronomist-expert-examining-corn-leaf-looking-disease-indicator_11134023.htm#query=botanical%20identification&position=8&from_view=keyword&track=ais#position=8&query=botanical%20identification */
+    background-size: cover;
+    background-position: center;
+}
+.colImg2 {
+    background: url(../photos/homepage/explore.jpg) no-repeat;
+    /* image obtained from https://www.freepik.com/free-photo/woman-moody-nature-photo-aesthetic-greenhouse_18117343.htm#query=explore%20plants&position=47&from_view=search&track=ais */
+    background-size: cover;
+    background-position: center;
+}
+.colImg3 {
+    background: url(../photos/homepage/contributions.jpg) no-repeat;
+    /* image obtained from https://www.freepik.com/free-photo/woman-taking-snapshot-her-plant-social-media_17430697.htm#query=plants%20photo%20sharings&position=7&from_view=search&track=ais */
+    background-size: cover;
+    background-position: center;
+}
+.colImg4 {
+    background: url(../photos/homepage/enquiry.jpg) no-repeat;
+    /* image obtained from https://www.freepik.com/free-photo/happily-gardener-man-use-smartphone-laptop-computer-while-online-tutorial-potted-plans-shop_18685208.htm#query=question%20about%20plant&position=37&from_view=search&track=ais */
+    background-size: cover;
+    background-position: center;
+}
+.colImg5 {
+    background: url(../photos/homepage/enhancements.jpg) no-repeat;
+    /* image obtained from https://www.freepik.com/free-photo/female-florist-using-laptop-with-potted-plants-desk_3180761.htm#query=software%20about%20plants&position=2&from_view=search&track=ais */
+    background-size: cover;
+    background-position: center;
+}
+.colImg6 {
+    background: url(../photos/homepage/aboutus.jpg) no-repeat;
+    /* image obtained from https://www.freepik.com/free-photo/team-coworkers-looking-green-screen-template-laptop-working-with-isolated-mockup-display-business-collaboration-partnership-people-sitting-coworking-office-with-copyspace_44988952.htm#query=green%20software%20teams&position=29&from_view=search&track=ais */
+    background-size: cover;
+    background-position: center;
+}
+.column1 h2, .column2 ul li, .column3 { /* FadeInFromTop animation for dropdown menu content */
+    animation-name: fadeInFromTop; /* Define the animation name */
+    animation-duration: 1s; /* Set the animation duration */
+    animation-delay: 0.2s; /* Add a delay to start the animation */
+    animation-fill-mode: forwards; /* Keep the final animation state */
+}
+@keyframes fadeInFromTop { /* Define the fadeInFromTop animation */
+    from {
+        opacity: 0; /* Start with zero opacity */
+        transform: translateY(-5px); /* Start 20px above */
+    }
+    to {
+        opacity: 1; /* Transition to full opacity */
+        transform: translateY(0); /* Stay at the original position */
+    }
+}
+
+/* CSS for Website Hamburger Menu */
+#sidebar_menu { /* Invisible checkbox used for hamburger menu toggles (control the visibility of the sidebar menu) */
+    display: none;
+}
+header label {  /* Hamburger menu icon linked to the checkbox through label tag */
+    cursor: pointer;
+    display: none;
+}
+#hamburgerNav { 
+    position: absolute;
+    top: 100%; left:0; right:0;
+    height: 100vh;
+    display: none;
+    background-color: #cfdfd7;
+    border-top: 1px solid rgba(0,0,0,.1);
+    padding: 50px;
+    animation-name: moveInFromLeft; /* MoveInFromLeft animation for hamburger sidebar menu */
+    animation-duration: 1s; 
+    animation-delay: 0.2s;
+    animation-fill-mode: forwards; 
+}
+@keyframes moveInFromLeft { /* Define the moveInFromLeft animation */
+    from {
+        transform: translateX(-100%); 
+    }
+    to {
+        transform: translateX(0); 
+    }
+}
+#hamburgerNav ul li {
+    list-style-type: none;
+    width: 100%;
+    padding: 10px 0;
+}
+#hamburgerNav ul li a {
+    position: relative;
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: normal;
+}
+#hamburgerNav ul li a:hover {
+    font-weight: bold;
+}
+#hamburgerNav ul li a::before { /* Simple underline animation upon links mouseover */ 
+    content: '';
+    position: absolute;
+    left: 0; bottom:-5px; 
+    width: 100%; height: 2px;
+    border-radius: 4px;
+    background-color: black;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .3s ease-in-out;
+}
+#hamburgerNav ul li a:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+#hamburgerNav ul li img { /*Styles for right arrow icons */
+    width: 15px;
+    position: relative;
+    top: 2px;
+    float: right;
+}
+
+/* Automatic adjustment made during minimzed screen size (fluid layout) */
+@media(max-width:991px) {
+    header {
+        padding: 0;
+    }
+    header label {
+        display: initial;
+        width: 25%;
+        padding-left: 25px ;
+    }
+    header label img { /* Hamburger icon */
+        width: 25px;
+    }
+    header label img:hover { 
+        opacity: 0.5;
+    }
+    header a#logo { /* Website logo re-positioning */
+        width: 50%;
+        margin: 0;
+    }
+    header a#logo img {
+        margin: 13px 28%;
+    }
+    header a.icon {
+        padding: 25px 10px;
+        top: 5px; left: 0%;
+    }
+    nav {
+        width: 25%;  
+        padding-left: 5%;
+    }
+    .navbar {
+        display: none;
+    }
+    #sidebar_menu:checked ~ #hamburgerNav { /* Display sidebar menu when hamburger icon clicked */
+        display: initial;
+    }
+}
+
+/* CSS for Website Homepage (index.html) */
+.homepage {
+    float: right;
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.homepage img {
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
+.homepage h1, .homepage_2 h1,.homepage_4 h1, #form_content h1, .signin_form h1 {
+    font-family: Georgia,Helvetica,Arial,sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    color: black;
+    font-size: 45px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align content to the left */
+    padding-left: 10%;
+    padding-top: 10%;
+}
+.main p {
+    margin-right: 50px; /* Add space around the paragraph */
+    line-height: 1.4;
+    text-align: left;
+}
+.main a {
+    text-decoration: none;
+    margin: 7px 0; /* Add space around the buttons */
+}
+a.button { /* Styles for login and sign up buttons */
+    margin-top: 22px;
+    margin-bottom: -7px;
+    padding: 15px 20px;
+    min-width: 250px;
+    font-size: 18px;
+    background-color: transparent; 
+    color: black; 
+    border: 1px solid black; 
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; 
+}
+a.button:hover {
+    background-color: black; 
+    color: white; 
+}
+.homepage_2, .homepage_4 {
+    width: 100%;
+    height: 100vh;
+    background-color: #cfdfd7;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.homepage_4 {
+    height: 120vh;
+}
+.homepage_2>.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1300px;
+}
+.container>.item  {
+    flex-basis: calc(33.33% - 20px);
+    margin: 10px;
+    text-align: center;
+}
+.item img {
+    width: 150px;
+    margin: 20px 0;
+}
+.item p {
+    margin: 20px;
+    line-height: 1.4;
+}
+.homepage_3 {
+    float: left;
+}
+.main2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-right: 10%;
+    padding-top: 0%;
+}
+.main2 p {
+    margin-left: 70px;
+    line-height: 1.4;
+    text-align: justify;
+}
+.main2 h1 {
+    margin-left: 70px;
+    text-align: left;
+}
+.homepage_4 h2 {
+    margin: 0 0 20px 0;
+}    
+#video {
+    width: 100%;
+    max-width: 976px;
+    height: 515px;
+    border-radius: 2px;
+    padding: 10px;
+    box-shadow:
+      inset #168665 0 0 0 5px, 
+      inset #059c8e 0 0 0 10px;
+}
+@media(max-width:700px) {
+    .homepage {
+        width: 100%;
+        height: 50vh;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .homepage h1, .homepage_2 h1, .homepage_4 h1 {
+        position: relative;
+        font-size: 33px;
+        bottom: 25px;
+        margin-bottom: 0;
+        font-weight: 600;
+        margin-left: 0;
+    }
+    a.button {
+        min-width: 400px;
+    }
+    .main, .main2 {
+        padding: 0;
+    }
+    .main p {
+        position: relative;
+        margin:0 25px;
+        text-align: left;
+        font-size: 15px;
+    }
+    .main2 p {
+        margin:0 25px;
+        font-size: 15px;
+    }
+    .homepage_2 {
+        height: 150vh;
+    }
+    .homepage_2>.container {
+        display:inline-block;
+    }
+    .item img {
+        width: 120px;
+        margin: 10px 0;
+    }
+    .item p {
+        margin: 10px 18px;
+        text-align: justify;
+        font-size: 15px;
+    }
+    .homepage_4 h2 {
+        font-size: 17px;
+        text-align: center;
+    }
+}
+
+
+/* CSS for Website Footer */
+footer {
+    background-color: #168665 ; /* Last colour chosen (dark green) mainly used for logo and footer */
+    color: white;
+    padding: 60px 0;
+    width: 100%;
+    height: 80vh;
+}
+.footer_container {
+    text-align: left;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 0 4%;
+}
+.footer_container section {
+    width: 20%;
+}
+.footer_container section p {
+    padding: 5px 0;
+}
+.footer_container section h3, .acknowledgement h3 {
+    font-size: 20px;
+    padding-bottom: 15px;
+}
+.footer_section1 p {
+    line-height: 25px;
+}
+.footer_section2 {
+    text-align: center;
+}
+.footer_container section a, .acknowledgement a {
+    font-style: italic;
+    color: white;
+    text-decoration: none;
+    margin-top: 5px;
+}
+.footer_container section a:hover, .acknowledgement a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
+.footer_icon {
+    margin-top: 5px;
+}
+.acknowledgement {
+    padding-top: 40px;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+}
+.acknowledgement table {
+    width: 100%;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+.acknowledgement table tr td {
+    padding: 2px;
+}
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 14px;
+}
+@media(max-width:800px) {
+    footer {
+        height: 60vh;
+        padding: 30px 0;
+    }
+    .footer_container {
+        padding: 0;
+        text-align: center;
+    }
+    .footer_container section {
+        width: 30%;
+    }
+    .footer_container section h3, .acknowledgement h3 {
+        font-size: 15px;
+        padding-bottom: 5px;
+    }
+    .footer_container section p, .footer_container table a, .acknowledgement a, .footer-bottom {
+        padding: 2px 0;
+        font-size: 10px;
+    }
+    .footer_section1 p {
+        line-height: 15px;
+    }
+    .footer_icon {
+        display: none;
+    }
+    .acknowledgement {
+        width: 100%;
+        padding-top: 20px;
+    }
+    .acknowledgement table {
+        margin-bottom: 20px;
+        line-height: 10px;
+    }
+    .footer_container table a {
+        position: relative;
+        left: 50%;
+    }
+    .footer-bottom {
+        margin-top: 20px;
+    }
+}
+
+/* CSS for login.html */
+#login_page {
+    background: url(../photos/forms/form_bg.jpg) no-repeat;
+    /* image obtained from https://www.freepik.com/free-photo/tropical-green-leaves-background_4102585.htm#&position=1&from_view=search&track=ais */
+    background-size: cover;
+    background-position: center;
+    display: flex; 
+    align-items: center;
+}
+.signin_form {
+    background-color: #fffff1;
+    margin: 0 auto;
+    padding: 0 25px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+#login_form {
+    width: 60%;
+    height: 60vh;
+    max-width: 350px;
+    max-height: 370px;
+}
+#signup_form {
+    width: 60%;
+    height: 80vh;
+    max-width: 350px;
+    max-height: 450px;
+}
+#back_icon {
+    text-decoration: none;
+    font-size: 30px;
+    color: black;
+    position: relative;
+    left: 98%;
+    top: 5px;
+}
+#back_icon:hover {
+    opacity: 0.5;
+}
+.signin_form p.link1 {
+    margin-top: 1vh;
+    margin-bottom: 6vh;
+}
+.signin_form p.link2 {
+    margin-top: 1.5vh;
+    text-align: center;
+}
+.signin_form p a {
+    font-size: 15px;
+    font-weight:bolder;
+}
+.signin_form p a:hover {
+    opacity: 0.5;
+}
+
+
+/* CSS for enquiry.html */
+#enquiry_form {
+    position: relative;
+    width: 60%;
+    height: 106vh;
+    max-height: 800px;
+    background-color: #fffff1;
+    display: flex;
+    padding: 0;
+    margin: 150px auto;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+#enquiry_form img {
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    object-fit:cover;
+}
+#form_content {
+    width: 50%;
+    height: 100%;
+    padding: 25px;  
+    box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+#form_content h1, .signin_form h1  {
+    font-size: 28px;
+    text-align: center;
+}
+#form_content legend, #form_content label {
+    font-size: 16px;
+    font-weight: bold;
+}
+#form_content legend {
+    padding: 2px;
+    margin-left: calc(50% - 35px - 8px);
+}
+#form_content fieldset {
+    margin: 2vh 0;
+}
+#form_content p.label, .signin_form p.label {
+    margin-top: 2vh;
+    margin-bottom: 1vh;
+}
+#firstName, #lastName {
+    width: 49%;
+}
+#email, table tr td input, #state, #phoneNumber, #plant, textarea, #form_content table, #password {
+    width: 100%;
+}   
+#state, #plant {
+    height: 28px;
+    border: 1px solid black;
+}
+textarea {
+    border: 1px solid black;
+    resize: none;
+}
+input, #state, #plant, textarea {
+    border-radius: 4px;
+    padding: 4px;
+}
+input:focus, textarea:focus {
+    border: 3px dotted #168665;
+}
+#form_content table {
+    padding: 20px;
+}
+#form_content table tr td {
+    padding: 5px 0;
+}
+#form_content .buttons, .signin_form .buttons {
+    margin-top: 18px;
+    text-align: center;
+}
+#form_content input[type="submit"], #form_content input[type="reset"],
+.signin_form input[type="submit"], .signin_form input[type="reset"] {
+    padding: 10px 20px;
+    border: 0;
+    background-color: #168665;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+#form_content input[type="reset"], .signin_form input[type="reset"]{
+    margin-left: 10px;
+}
+#form_content input[type="submit"]:hover, #form_content input[type="reset"]:hover,
+.signin_form input[type="submit"]:hover, .signin_form input[type="reset"]:hover {
+    padding: 11px 21px;
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+/* To resize the elements in the form accordingly as well as to remove the image  */
+@media(max-width:900px) {
+    #enquiry_form {
+        width: 85%;
+        display: inline-block;
+        margin: 130px 40px;
+    }
+    #enquiry_form img {
+        display: none;
+    }
+    #form_content {
+        width: 100%;
+    }
+}
+
+/** CSS for profile page (x5) **/
+.profile_header {
+    text-align: center;
+    line-height: 40px;
+    padding: 20px;
+    margin-top:80px;
+    color: white;
+}
+.profile_header h1 {
+    font-family: Georgia,Helvetica,Arial,sans-serif;
+    font-size: 35px;
+}
+.profile_header p {
+    font-weight: bold;
+} 
+/* Apply different background colors to each profile page header accordingly */
+#header_df {background-color: #7ea952;}
+#header_es {background-color: #ad91d4;}
+#header_mq {background-color: #edaeb4;}
+#header_jy {background-color: #9cd8bb;}
+#header_jh {background-color: #7092b2;}
+/* Apply different font colors (RBG) to each course name labellings */
+#course_df {color:rgb(70, 113, 28);}
+#course_es {color:rgb(143, 102, 201);}
+#course_mq {color:rgb(231, 109, 140);}
+#course_jy {color:rgb(51, 188, 122);}
+#course_jh {color:rgb(67, 122, 172);}
+.profile_container {
+    max-width: 900px;
+    margin: 20px auto 20px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    float: center;
+}
+.profile_container>p {
+    font-weight: bold;
+    font-family: Arial,sans-serif;
+    padding-bottom: 10px; 
+    /* Set arial font to student number and other elements */
+}
+/* Different background colours for each profile page in hexadecimal are applied */
+#deron_bg1 {background-color: #d2e2c3;}
+#deron_bg2 {background-color: #f2fcb9;}
+#esther_bg1 {background-color: #d5c5d9;}
+#esther_bg2 {background-color: #ece3ef;}
+#meiqi_bg1 {background-color: #a4bbce;}
+#meiqi_bg2 {background-color: #F5F5DC;}
+#jiayi_bg1 {background-color: #f9f9d6;}
+#jiayi_bg2 {background-color: #F1D3B3;}
+#junhong_bg1 {background-color: #aed7e9;}
+#junhong_bg2 {background-color: #def2fa;}
+.profile {
+    width: 300px;
+    border: 2px groove #333; /* Apply groove border with desired color and width */
+    padding: 20px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 20px;
+}
+.profile_name {
+    font-weight: bold; /* Make the second column (name) bold */
+    font-size: 200%; /* Set font size to 200% for the name */
+    line-height: 0;
+    margin-bottom: 20px;
+}
+.profile_container table {
+    max-width: 800px;
+    margin: 20px auto;
+    width: 80%; /* Adjust the table width as needed */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+/* Different background colours for table elements in hexadecimal are applied */
+#table_df {background-color: #46711c;}
+#table_df th {background-color: #7ea952;}
+#table_df td {background-color: #bad195;}
+#table_es {background-color: #8F66C9;}
+#table_es th {background-color: #ad91d4;}
+#table_es td {background-color: #d5c5d9;}
+#table_mq {background-color: #e76d8c;}
+#table_mq th {background-color: #edaeb4;}
+#table_mq td {background-color: #fbd7da;}
+#table_jy {background-color: #33bc7a;}
+#table_jy th {background-color: #9cd8bb; }
+#table_jy td {background-color: #E6E6E6;}
+#table_jh {background-color: #437aac; }
+#table_jh th {background-color: #7092b2; }
+#table_jh td {background-color: #9fc3d1;}
+/* Style for the extra information table */
+.profile_container table th {
+    text-align: center;
+    padding: 10px;
+    max-width: 200px;
+}
+.profile_container table td {
+    text-align: justify;
+    padding: 10px;
+}
+.email_button {
+    color: white;
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+.email_button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+/* Apply different background colours for email me buttons from each profile page  */
+#btn_df {background-color: #7ea952;}
+#btn_es {background-color: #ad91d4;}
+#btn_mq {background-color: #edaeb4;}
+#btn_jy {background-color: #9cd8bb;}
+#btn_jh {background-color: #7092b2;}
+.email_button span {
+    margin-right: 5px;
+    font-size: 20px;
+}
+
+
