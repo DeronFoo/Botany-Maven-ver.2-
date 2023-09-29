@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <title>Identify</title>
+    <link rel="stylesheet" type="text/css" href="identify.css">
+	
+	<style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h2{
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .identify-container {
+            max-width: 900px;
+            margin: 20px auto 20px;
+            text-align: left;
+            padding: 20px;
+            background-color: #e0f5dc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            float: center;
+        }
+
+        .dropzone {
+            border: 2px dashed #1b4e36;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .dropzone:hover {
+            background-color: #f0f0f0;/* Color of the dropzone when the cursor is on it */
+        }
+
+        .file-input {
+            display: none; /* Hide the default file input */
+        }
+
+        /* Style for the file name display */
+        .file-name {
+            margin-top: 10px;
+        }
+		
+		.search-button {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .search-button button {
+            background-color: #1b4e36; /* Change the background color */
+            color: #fff; /* Change the text color */
+            padding: 10px 20px; /* Add padding to the button */
+            border: none; /* Remove the default button border */
+            cursor: pointer; /* Change cursor on hover */
+            border-radius: 5px; /* Add rounded corners */
+        }
+        
+        .map-container {
+            display: flex;
+            flex-direction: column; /* Stack the h2 and map vertically */
+            align-items: center; /* Center horizontally */
+            text-align: center; /* Center text within the h2 */
+            margin-top: 20px; /* Adjust the top margin as needed */
+        }
+
+        /* Style for the h2 within the map container */
+        .map-container h2 {
+            margin: 0; /* Remove default margin to eliminate extra space */
+            padding: 20px;
+        }
+
+        /* Style for the map section container */
+        .map-section {
+            width: 80%; /* Adjust the width of the map section */
+            max-width: 800px; /* Set a maximum width if needed */
+            height: 400px; /* Set the desired height for the map */
+        }
+
+       /* Style for the article */
+        article {
+            background-color: #c9d4c9; /* Background color for the entire article */
+            padding: 20px; /* Add padding to the article */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+            margin-top: 20px; /* Adjust the top margin as needed */
+        }
+
+        /* Style for the grid container */
+        .grid-container {
+            display: flex;
+            margin-top: 30px;
+            justify-content: space-between; /* Add space between grid items */
+            flex-wrap: wrap; /* Allow items to wrap to the next row if needed */
+        }
+
+        /* Style for the grid item */
+        .grid_item {
+            max-width: 300px;
+            margin-bottom: 20px; /* Add spacing between grid items */
+            text-align: left;
+            padding: 20px;
+            background-color: #e0f5dc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            float: none;
+            flex: 1; /* Distribute items evenly within the container */
+        }
+
+        /* Style for the number count */
+        .number_count {
+            width: 50px;
+            height: 50px;
+            aspect-ratio: 1/1; /* Maintain 1:1 aspect ratio for circular shape */
+            border-radius: 100%;
+            background-color: #1b4e36;
+            color: #fff;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            float: left; /* Move the number count to the left */
+        }
+
+        /* Style for the numbered grid content */
+        .numbered_grid_content {
+            flex: 1; /* Occupy available space within the grid item */
+        }
+
+        /* Style for the numbered grid title */
+        .numbered_grid_title {
+            font-size: 18px; /* Adjust the font size for the title */
+            font-weight: bold;
+            text-align: justify;
+            margin-bottom: 10px; /* Add spacing below the title */
+        }
+
+        /* Style for the unordered list */
+        .thing_fact ul {
+            list-style-type: disc; /* Use disc bullets for the list */
+            margin-left: 10px; /* Add left margin to the list */
+            margin-bottom: 10px; /* Add spacing below the list */
+        }
+
+        /* Style for list items */
+        .thing_fact ul li {
+            margin-bottom: 5px; /* Add spacing between list items */
+        }
+
+        /* Style for list items */
+        .thing_fact ol li {
+            margin-bottom: 5px; /* Add spacing between list items */
+        }
+
+        .thing_fact ol {
+            margin-left: 10px; /* Add left margin to the list */
+            margin-bottom: 10px; /* Add spacing below the list */
+        }
+
+        /* Style for the paragraph within "thing_fact" */
+        .thing_fact p {
+            margin-top: 20px;
+            margin-bottom: 10px; /* Add spacing below the paragraph */
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <h1>Identify Plants <br>(still under compilation)</h1>
+        <p>Your Guide to Plant Identification and Care</p>
+    </header>
+
+    <section class="identify-container">
+        <h2>Identify/Contribute to Botany Maven</h2>
+        <p>Plant Identification Guidelines</p>
+        <ul>
+            <li><strong>Maximum of 2 Pictures:</strong> You can upload up to four pictures of the same plant for identification.</li>
+            <li><strong>At Least One of Leaf, Flower, Fruit, or Bark:</strong> To ensure successful plant identification, you must include at least one photo of either the leaf, flower, fruit, or bark of the plant.</li>
+            <li><strong>Recommended Image Dimensions:</strong> It is recommended to use images with a width of 1280 pixels for better identification results.</li>
+        </ul>
+
+        <div class="dropzone">
+            <label for="file" class="file-name">Choose a file</label>
+            <input type="file" id="file" class="file-input" />
+        </div>
+        
+        <div class="search-button">
+            <button onclick="document.getElementById('file').click()">Search</button>
+        </div>
+    </section>
+
+    <aside>
+        <h2>About Botany Maven</h2>
+        <p>Botany Maven is your go-to resource for identifying plants and learning how to care for them. Whether you're a plant enthusiast or a beginner, we've got you covered.</p>
+        <p>Our team of experts is dedicated to helping you discover the world of plants, from identifying unknown species to providing tips on maintaining a thriving garden.</p>
+    </aside>
+
+    <section class="map-container">
+        <h2>Plant Locations</h2>
+        <section class="map-section">
+            <!-- Embed Google Maps using an iframe -->
+            <iframe
+                width="100%"
+                height="100%"
+                frameborder="0"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15953.578263232777!2d110.36074864783924!3d1.5307051589950078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2smy!4v1695737223735!5m2!1sen!2smy" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </section>
+    </section>
+
+    <section class="plant-info">
+        <h2>Plant Information</h2>
+        <article>
+            <h3>How to Take Care of the Plants</h3>
+            <div class="grid-container">
+                <div class="grid_item">
+                    <div class="number_count">1</div>
+                    <div class="numbered_grid_content">
+                        <p class="numbered_grid_title">Give your plants plenty of light</p>
+                        <div class="thing_fact">
+                            <ul>
+                                <li>Full sunlight plants need 4-6 hours of direct sun daily.</li>
+                                <li>Partial sunlight plants require 2-3 hours of direct sun daily.</li>
+                                <li>Shade-loving plants thrive with just 1 hour of direct sun daily.</li>
+                            </ul>
+                            <p>Choose a location for your plants that matches these requirements, and keep in mind that south-facing windows receive the most light, while north-facing windows receive the least. Proper lighting is crucial for the health and longevity of your indoor plants.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_item">
+                    <div class="number_count">2</div>
+                    <div class="numbered_grid_content">
+                        <p class="numbered_grid_title">Water your plants regularly</p>
+                        <div class="thing_fact">
+                            <p>The proper way to water houseplants:</p>
+                            <ul>
+                                <li>Water needs vary; some like constant moisture, others need less.</li>
+                                <li>Typically, water 2-3 times a week without making soil muddy.</li>
+                                <li>Check moisture by finger test.</li>
+                                <li>Use warm water to prevent root shock.</li>
+                                <li>Monthly, water deeply in the sink to prevent salt buildup.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_item">
+                    <div class="number_count">3</div>
+                    <div class="numbered_grid_content">
+                        <p class="numbered_grid_title">Fertilize your plants every few weeks</p>
+                        <div class="thing_fact">
+                            <p>To fertilize indoor plants effectively:</p>
+                            <ul>
+                                <li>Fertilize every 2-3 weeks due to the lack of natural organic matter indoors.</li>
+                                <li>Choose a balanced fertilizer like 6-12-6 or 10-10-10 for most plants.</li>
+                                <li>Apply as directed on the package: sprinkle on top of the soil or mix with water for liquid fertilizers.</li>
+                                <li>No need to mix into the soil; it will dissolve naturally over time.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        
+        <article>
+            <h3>The Right Environment for the Plant</h3>
+            <div class="grid-container">
+                <div class="grid_item">
+                    <div class="number_count">1</div>
+                    <div class="numbered_grid_content">
+                        <p class="numbered_grid_title">Quality</p>
+                        <div class="thing_fact">
+                            <p>The right environment for plants depends on understanding light quality. Sunlight contains a full spectrum of wavelengths, with blue and red light being most crucial for growth. Blue light promotes vegetative growth, while red light, in combination with blue, encourages flowering. Plants appear green because they reflect green light.
+                            <br>Choosing the correct light source is vital for manipulating plant growth. Fluorescent (cool white) light, rich in blue wavelengths, is great for leafy growth and seedlings. Incandescent light, high in red/orange, is often too hot for plants. Specialized grow lights mimic sunlight by blending red and blue, but they can be costly and not significantly better than regular fluorescent lights.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_item">
+                    <div class="number_count">2</div>
+                    <div class="numbered_grid_content">
+                        <p class="numbered_grid_title">Temperature</p>
+                        <div class="thing_fact">
+                            <p>Temperature plays a crucial role in a plant's environment, impacting various processes such as photosynthesis, transpiration, respiration, germination, and flowering. Within certain limits, higher temperatures can increase these processes. Additionally, temperature, in conjunction with day length, influences the shift from vegetative to reproductive growth, either expediting or delaying this transition depending on the plant and conditions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_item">
+                    <div class="number_count">3</div>
+                    <div class="numbered_grid_content">
+                        <p class="numbered_grid_title">Water and Humidity</p>
+                        <div class="thing_fact">
+                            <p>Water is vital for plants, constituting about 90% of their composition. It serves various crucial functions:</p>
+                            <ol>
+                                <li>Essential for photosynthesis and respiration.</li>
+                                <li>Maintains turgor pressure in cells, which is necessary for cell shape and growth.</li>
+                                <li>Acts as a solvent for minerals and carbohydrates.</li>
+                                <li>Helps cool leaves through transpiration.</li>
+                                <li>Regulates stomatal opening and closing, affecting transpiration and photosynthesis.</li>
+                                <li>Facilitates root movement through the soil.</li>
+                                <li>Serves as the medium for biochemical reactions.</li>
+                            </ol>
+                            <p>Relative humidity (RH) gauges the air's water vapor relative to its capacity at a specific temperature and pressure. RH directly impacts transpiration. Transpiration rates hinge on the difference in RH between leaf spaces and the nearby air. High leaf humidity lowers transpiration, while low humidity, coupled with heat and wind, heightens it. In arid, hot conditions, plants can wilt rapidly without a steady water supply to uphold turgor pressure.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+        </article>
+
+        <article>
+            <h3>Scientific Plant Name</h3>
+            <p>This is where the scientific name of the plant will be displayed.</p>
+        </article>
+
+        <article>
+            <h3>Common Name</h3>
+            <p>This is where the common name of the plant will be displayed.</p>
+        </article>
+    </section>
+</main>
+
+
+
+references
+https://www.wikihow.com/Take-Care-of-Plants
+https://extension.oregonstate.edu/gardening/techniques/environmental-factors-affecting-plant-growth
+
+    
